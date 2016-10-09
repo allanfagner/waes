@@ -1,4 +1,5 @@
 ﻿- How to use the app
+ 	- Update WaesContext connetion string to match your environmnet
 	- Just fire up Wase app and the endpoints will be work as requested. Ex:
 		- <host>/v1/diff/1/left
 		- <host>/v1/diff/1/right
