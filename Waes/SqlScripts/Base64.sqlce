@@ -1,0 +1,7 @@
+CREATE TABLE [Base64] (
+  [Id] int IDENTITY (1,1) NOT NULL
+, [Value] nvarchar(4000) NULL
+);
+GO
+ALTER TABLE [Base64] ADD CONSTRAINT [PK_dbo.Base64] PRIMARY KEY ([Id]);
+GO

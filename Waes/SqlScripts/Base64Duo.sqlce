@@ -1,0 +1,17 @@
+CREATE TABLE [Base64Duo] (
+  [Key] int IDENTITY (1,1) NOT NULL
+, [Id] int NOT NULL
+, [Left_Id] int NULL
+, [Right_Id] int NULL
+);
+GO
+ALTER TABLE [Base64Duo] ADD CONSTRAINT [PK_dbo.Base64Duo] PRIMARY KEY ([Key]);
+GO
+CREATE INDEX [IX_Left_Id] ON [Base64Duo] ([Left_Id] ASC);
+GO
+CREATE INDEX [IX_Right_Id] ON [Base64Duo] ([Right_Id] ASC);
+GO
+ALTER TABLE [Base64Duo] ADD CONSTRAINT [FK_dbo.Base64Duo_dbo.Base64_Left_Id] FOREIGN KEY ([Left_Id]) REFERENCES [Base64]([Id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+ALTER TABLE [Base64Duo] ADD CONSTRAINT [FK_dbo.Base64Duo_dbo.Base64_Right_Id] FOREIGN KEY ([Right_Id]) REFERENCES [Base64]([Id]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
