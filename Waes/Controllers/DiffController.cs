@@ -13,16 +13,16 @@ namespace Waes.Controllers
     [RoutePrefix("v1/diff")]
     public class DiffController : ApiController
     {
-        WaseContext context;
+        WaesContext context;
 
-        public DiffController(WaseContext context)
+        public DiffController(WaesContext context)
         {
             this.context = context;
         }
 
         public DiffController()
         {
-            context = new WaseContext();           
+            context = new WaesContext();           
         }
 
         [HttpPost]
