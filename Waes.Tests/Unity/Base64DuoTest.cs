@@ -9,6 +9,7 @@ using Waes.Model;
 namespace Waes.Tests.Unity
 {
     [TestClass]
+    
     public class Base64DuoTest
     {
         [TestMethod]
@@ -107,6 +108,28 @@ namespace Waes.Tests.Unity
         }
 
         [TestMethod]
+        public void UnderlyingStringsHasSameLenth_LeftHasAValueAndRightDont_Fase()
+        {
+            var left = new Base64("dGVzdCBzdHJpbmc="); //test string
+            Base64 right = null;
+
+            var base64Duo = new Base64Duo(1, left, right);
+
+            Assert.IsFalse(base64Duo.UnderlyingStringsHasSameLenth());
+        }
+
+        [TestMethod]
+        public void UnderlyingStringsHasSameLenth_RighttHasAValueAndLeftDont_Fase()
+        {            
+            Base64 left = null;
+            var right = new Base64("dGVzdCBzdHJpbmc="); //test string
+
+            var base64Duo = new Base64Duo(1, left, right);
+
+            Assert.IsFalse(base64Duo.UnderlyingStringsHasSameLenth());
+        }
+
+        [TestMethod]
         public void UnderlyingStringsHasSameLenth_LeftAndRightHaveDifferentStringsWithDifferentLengths_False()
         {
             var left = new Base64("dGVzdCBzdHJpbmc=");
@@ -141,6 +164,31 @@ namespace Waes.Tests.Unity
             var errors = base64Duo.Diff();
 
             Assert.AreEqual(5, errors.Count());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Diff_LeftHasValueAndRightDont_ThrowsException()
+        {
+            var left = new Base64("dGVzdCBzdHJpbmc="); //test string
+            Base64 right = null;
+
+            var base64Duo = new Base64Duo(1, left, right);
+
+            var errors = base64Duo.Diff();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Diff_RightHasValueAndLeftDont_ThrowsException()
+        {
+            Base64 left = null;
+            var right = new Base64("dGVzdCBzdHJpbmc="); //test string
+            
+
+            var base64Duo = new Base64Duo(1, left, right);
+
+            var errors = base64Duo.Diff();
         }
     }
 }
